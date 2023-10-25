@@ -12,7 +12,7 @@
 			"schema": {
 				"type": "string"
 			},
-			"Table": {
+			"tabla": {
 				"type": "string"
 			}
 		},

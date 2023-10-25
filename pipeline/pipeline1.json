@@ -68,7 +68,11 @@
 											"type": "Expression"
 										},
 										"schema": {
-											"value": "@item().Schema1.finance",
+											"value": "@item().schema",
+											"type": "Expression"
+										},
+										"tabla": {
+											"value": "@item().tabla",
 											"type": "Expression"
 										}
 									}
