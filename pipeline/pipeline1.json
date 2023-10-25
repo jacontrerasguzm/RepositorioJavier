@@ -51,8 +51,29 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
 								"enableStaging": false
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "AzureSqlTable1",
+									"type": "DatasetReference",
+									"parameters": {
+										"URLKeyVault": {
+											"value": "https://kv-almacenjavier.vault.azure.net/",
+											"type": "Expression"
+										},
+										"schema": {
+											"value": "@item().Schema1.finance",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
