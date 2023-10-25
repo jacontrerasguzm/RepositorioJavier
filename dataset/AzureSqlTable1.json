@@ -21,7 +21,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": {
-				"value": "@dataset().Schema1",
+				"value": "@dataset().schema",
 				"type": "Expression"
 			},
 			"table": {
