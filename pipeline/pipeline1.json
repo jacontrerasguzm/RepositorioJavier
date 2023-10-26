@@ -59,11 +59,51 @@
 								"sink": {
 									"type": "AzureSqlSink",
 									"writeBehavior": "insert",
-									"sqlWriterUseTableLock": false
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
 								},
 								"enableStaging": false,
 								"translator": {
 									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Codigo",
+												"type": "Guid",
+												"physicalType": "uniqueidentifier"
+											},
+											"sink": {
+												"name": "Codigo",
+												"type": "Guid",
+												"physicalType": "Guid"
+											}
+										},
+										{
+											"source": {
+												"name": "Nombre",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "Nombre",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "CodigoDane",
+												"type": "String",
+												"physicalType": "nvarchar"
+											},
+											"sink": {
+												"name": "CodigoDane",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
 									"typeConversion": true,
 									"typeConversionSettings": {
 										"allowDataTruncation": true,
@@ -81,7 +121,7 @@
 											"type": "Expression"
 										},
 										"schema1": {
-											"value": "@item().schema",
+											"value": "@item().schema1",
 											"type": "Expression"
 										},
 										"tabla": {
