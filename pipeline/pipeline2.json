@@ -14,7 +14,7 @@
 				"typeProperties": {
 					"variableName": "tabla",
 					"value": {
-						"value": "@json('[\n{\n      \"schema1\": \"finance\",    \n        \"schema2\": \"dbo\",     \n        \"tabla\":\"LogisticsAddressCountryRegionStaging\" ,   \n        \"pk_integracion\": \"COUNTRYREGION\"\n        },\n\n\t\t {\n      \"schema1\": \"finance\",    \n        \"schema2\": \"dbo\",     \n        \"tabla\":\"PaymTermInvoiceStaging\" ,   \n        \"pk_integracion\": \"DATAAREAID\"\n        },\n\n\t\t {\n      \"schema1\": \"finance\",    \n        \"schema2\": \"dbo\",     \n        \"tabla\":\"UFTProjInvoiceJourStaging\" ,   \n        \"pk_integracion\": \"DATAAREAID\"\n        },\n\n         {\n      \"schema1\": \"finance\",    \n        \"schema2\": \"dbo\",     \n        \"tabla\":\"aqs_canton\" ,   \n        \"pk_integracion\": \"Codigo\"\n        },\n\n        {\n      \"schema1\": \"finance\",    \n        \"schema2\": \"dbo\",     \n        \"tabla\":\"aqs_cliente\" ,   \n        \"pk_integracion\": \"IdClienteCrm\"\n        },\n\n        ]')",
+						"value": "@json('[\n\n{\n      \"schema\": \"dbo\",    \n        \"schema2\": \"dbt\",     \n        \"tabla\":\"LogisticsAddressCountryRegionStaging\" ,   \n        \"pk_integracion\": \"COUNTRYREGION\"\n        },\n        \n         ] ')",
 						"type": "Expression"
 					}
 				}
@@ -67,7 +67,13 @@
 								},
 								"sink": {
 									"type": "AzureSqlSink",
-									"writeBehavior": "insert",
+									"writeBehavior": "upsert",
+									"upsertSettings": {
+										"useTempDB": true,
+										"keys": [
+											""
+										]
+									},
 									"sqlWriterUseTableLock": false,
 									"tableOption": "autoCreate",
 									"disableMetricsCollection": false
@@ -125,24 +131,20 @@
 			}
 		],
 		"parameters": {
-			"schema1": {
+			"schema": {
 				"type": "string",
-				"defaultValue": "finance"
+				"defaultValue": "dbo"
 			},
 			"schema2": {
 				"type": "string",
-				"defaultValue": "dbo"
+				"defaultValue": "dbot"
 			}
 		},
 		"variables": {
 			"tabla": {
 				"type": "Array",
 				"defaultValue": [
-					"LogisticsAddressCountryRegionStaging",
-					"PaymTermInvoiceStaging",
-					"UFTProjInvoiceJourStaging",
-					"aqs_canton",
-					"aqs_cliente"
+					"LogisticsAddressCountryRegionStaging"
 				]
 			}
 		},
