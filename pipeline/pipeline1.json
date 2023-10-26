@@ -135,8 +135,14 @@
 		},
 		"variables": {
 			"tabla": {
-				"type": "String",
-				"defaultValue": "[\"LogisticsAddressCountryRegionStaging\",\"PaymTermInvoiceStaging\",\"UFTProjInvoiceJourStaging\",\"aqs_canton\",\"aqs_cliente\"]"
+				"type": "Array",
+				"defaultValue": [
+					"LogisticsAddressCountryRegionStaging",
+					"PaymTermInvoiceStaging",
+					"UFTProjInvoiceJourStaging",
+					"aqs_canton",
+					"aqs_cliente"
+				]
 			}
 		},
 		"annotations": []
