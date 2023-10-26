@@ -80,7 +80,7 @@
 											"value": "https://kv-almacenjavier.vault.azure.net/",
 											"type": "Expression"
 										},
-										"schema": {
+										"schema1": {
 											"value": "@item().schema",
 											"type": "Expression"
 										},
@@ -97,7 +97,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"URLKeyVault": "https://kv-almacenjavier.vault.azure.net/",
-										"schema": {
+										"schema2": {
 											"value": "@item().schema2",
 											"type": "Expression"
 										},
