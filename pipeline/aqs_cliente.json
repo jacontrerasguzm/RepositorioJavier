@@ -49,16 +49,7 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [
-								{
-									"name": "source",
-									"value": "@{item().schema1}.@{item().tabla}"
-								},
-								{
-									"name": "destination",
-									"value": "@{item().schema2}.@{item().tabla}"
-								}
-							],
+							"userProperties": [],
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
@@ -113,7 +104,10 @@
 									"referenceName": "AzureSqlTable2",
 									"type": "DatasetReference",
 									"parameters": {
-										"URLKeyVault": "https://kv-almacenjavier.vault.azure.net/",
+										"URLKeyVault": {
+											"value": "https://kv-almacenjavier.vault.azure.net/",
+											"type": "Expression"
+										},
 										"schema2": {
 											"value": "@item().schema2",
 											"type": "Expression"
