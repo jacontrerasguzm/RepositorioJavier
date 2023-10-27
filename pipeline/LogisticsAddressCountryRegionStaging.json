@@ -62,7 +62,7 @@
 									"upsertSettings": {
 										"useTempDB": true,
 										"keys": [
-											"COUNTRYREGION"
+											""
 										]
 									},
 									"sqlWriterUseTableLock": false,
