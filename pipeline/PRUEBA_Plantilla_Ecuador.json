@@ -12,7 +12,7 @@
 						"referenceName": "tabla",
 						"type": "DatasetReference"
 					},
-					"timeout": "0.12:00:00",
+					"timeout": "0.00:01:00",
 					"sleep": 10
 				}
 			},
@@ -36,8 +36,30 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"additionalColumns": [
+							{
+								"name": "Columna_Prueba",
+								"value": "666"
+							}
+						],
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"modifiedDatetimeStart": "2023-10-28T00:00:00.000Z",
+							"modifiedDatetimeEnd": "2023-10-28T02:00:00.000Z",
+							"enablePartitionDiscovery": false
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "tabla",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
