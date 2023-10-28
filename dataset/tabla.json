@@ -1,0 +1,46 @@
+{
+	"name": "tabla",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Hoja1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "PRUEBA_Plantilla_Ecuador.xlsx",
+				"container": "ejercicio3"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "ufn_sociedadesfoid",
+				"type": "String"
+			},
+			{
+				"name": "ufn_name",
+				"type": "String"
+			},
+			{
+				"name": "ufn_clienteid",
+				"type": "String"
+			},
+			{
+				"name": "ufn_paisid",
+				"type": "String"
+			},
+			{
+				"name": "ufn_estadosincronizacionfo",
+				"type": "String"
+			},
+			{
+				"name": "ufn_sociedadufinetid",
+				"type": "String"
+			}
+		]
+	}
+}
