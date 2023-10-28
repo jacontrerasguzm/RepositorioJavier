@@ -1,0 +1,316 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Nombre de instancia de Data Factory"
+		},
+		"AzureBlobStorage1": {
+			"type": "string"
+		},
+		"AzureSqlDatabase1": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/PRUEBA_Plantilla_Ecuador')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Validation1",
+						"type": "Validation",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "tabla",
+								"type": "DatasetReference"
+							},
+							"timeout": "0.00:01:00",
+							"sleep": 10
+						}
+					},
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Validation1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"additionalColumns": [
+									{
+										"name": "Columna_Prueba",
+										"value": "666"
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"modifiedDatetimeStart": "2023-10-28T00:00:00.000Z",
+									"modifiedDatetimeEnd": "2023-10-28T02:00:00.000Z",
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ufn_sociedadesfoid",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ufn_sociedadesfoid",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ufn_name",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ufn_name",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ufn_clienteid",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ufn_clienteid",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ufn_paisid",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ufn_paisid",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ufn_estadosincronizacionfo",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ufn_estadosincronizacionfo",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "ufn_sociedadufinetid",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ufn_sociedadufinetid",
+											"type": "String",
+											"physicalType": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "Columna_Prueba",
+											"type": "String"
+										},
+										"sink": {
+											"name": "Columna_Prueba",
+											"type": "String",
+											"physicalType": "String"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "tabla",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DatasetGeneric",
+								"type": "DatasetReference",
+								"parameters": {
+									"esquema": "prb",
+									"tabla": "pruebaexcel",
+									"URLKeyVault": {
+										"value": "https://kv-almacenjavier.vault.azure.net/",
+										"type": "Expression"
+									},
+									"SecretKeyVault": {
+										"value": "DatabaseConnectiondatabase1",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/tabla')]",
+				"[concat(variables('factoryId'), '/datasets/DatasetGeneric')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tabla')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('AzureBlobStorage1')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Hoja1",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "PRUEBA_Plantilla_Ecuador.xlsx",
+						"container": "ejercicio3"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "ufn_sociedadesfoid",
+						"type": "String"
+					},
+					{
+						"name": "ufn_name",
+						"type": "String"
+					},
+					{
+						"name": "ufn_clienteid",
+						"type": "String"
+					},
+					{
+						"name": "ufn_paisid",
+						"type": "String"
+					},
+					{
+						"name": "ufn_estadosincronizacionfo",
+						"type": "String"
+					},
+					{
+						"name": "ufn_sociedadufinetid",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DatasetGeneric')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('AzureSqlDatabase1')]",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"URLKeyVault": {
+							"value": "@dataset().URLKeyVault",
+							"type": "Expression"
+						},
+						"SecretKeyVault": {
+							"value": "@dataset().SecretKeyVault",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"esquema": {
+						"type": "string"
+					},
+					"tabla": {
+						"type": "string"
+					},
+					"URLKeyVault": {
+						"type": "string"
+					},
+					"SecretKeyVault": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": {
+						"value": "@dataset().esquema",
+						"type": "Expression"
+					},
+					"table": {
+						"value": "@dataset().tabla",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/default')]",
+			"type": "Microsoft.DataFactory/factories/managedVirtualNetworks",
+			"apiVersion": "2018-06-01",
+			"dependsOn": []
+		}
+	]
+}
