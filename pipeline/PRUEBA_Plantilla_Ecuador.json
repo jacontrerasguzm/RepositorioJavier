@@ -52,12 +52,130 @@
 							"enablePartitionDiscovery": false
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "ufn_sociedadesfoid",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ufn_sociedadesfoid",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ufn_name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ufn_name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ufn_clienteid",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ufn_clienteid",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ufn_paisid",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ufn_paisid",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ufn_estadosincronizacionfo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ufn_estadosincronizacionfo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "ufn_sociedadufinetid",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ufn_sociedadufinetid",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Columna_Prueba",
+									"type": "String"
+								},
+								"sink": {
+									"name": "Columna_Prueba",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
 						"referenceName": "tabla",
 						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DatasetGeneric",
+						"type": "DatasetReference",
+						"parameters": {
+							"esquema": "prb",
+							"tabla": "pruebaexcel",
+							"URLKeyVault": {
+								"value": "https://kv-almacenjavier.vault.azure.net/",
+								"type": "Expression"
+							},
+							"SecretKeyVault": {
+								"value": "DatabaseConnectiondatabase1",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
