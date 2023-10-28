@@ -1,0 +1,46 @@
+{
+	"name": "DatasetGeneric",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"URLKeyVault": {
+					"value": "@dataset().URLKeyVault",
+					"type": "Expression"
+				},
+				"SecretKeyVault": {
+					"value": "@dataset().SecretKeyVault",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"esquema": {
+				"type": "string"
+			},
+			"tabla": {
+				"type": "string"
+			},
+			"URLKeyVault": {
+				"type": "string"
+			},
+			"SecretKeyVault": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().esquema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().tabla",
+				"type": "Expression"
+			}
+		}
+	}
+}
