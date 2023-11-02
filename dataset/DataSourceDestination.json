@@ -1,5 +1,5 @@
 {
-	"name": "DataSourceFolder_copy1",
+	"name": "DataSourceDestination",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage1",
