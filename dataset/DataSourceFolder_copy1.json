@@ -1,0 +1,35 @@
+{
+	"name": "DataSourceFolder_copy1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"contenedor": {
+				"type": "string"
+			},
+			"directorio": {
+				"type": "string"
+			},
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@dataset().directorio",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().contenedor",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
