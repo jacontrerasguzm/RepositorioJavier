@@ -206,16 +206,20 @@
 		],
 		"parameters": {
 			"SourceStore_Location": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://stjavier.blob.core.windows.net/ejercicio3"
 			},
 			"SourceStore_Directory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://stjavier.blob.core.windows.net/ejercicio3"
 			},
 			"DestinationStore_Location": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://stjavier.blob.core.windows.net/ejercicio4"
 			},
 			"DestinationStore_Directory": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://stjavier.blob.core.windows.net/ejercicio4"
 			}
 		},
 		"annotations": []
