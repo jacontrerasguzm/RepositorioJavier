@@ -17,11 +17,7 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "DataSourceFolder",
-						"type": "DatasetReference",
-						"parameters": {
-							"contenedor": "https://stjavier.blob.core.windows.net/ejercicio3/Creacion.xlsb",
-							"directorio": "https://stjavier.blob.core.windows.net/ejercicio3/"
-						}
+						"type": "DatasetReference"
 					},
 					"fieldList": [
 						"childItems"
@@ -110,41 +106,13 @@
 							"inputs": [
 								{
 									"referenceName": "DataSourceFile",
-									"type": "DatasetReference",
-									"parameters": {
-										"contenedor": {
-											"value": "https://stjavier.blob.core.windows.net/ejercicio3",
-											"type": "Expression"
-										},
-										"directorio": {
-											"value": "https://stjavier.blob.core.windows.net/ejercicio3/Creacion.xlsb",
-											"type": "Expression"
-										},
-										"filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
 								{
 									"referenceName": "DataSourceDestination",
-									"type": "DatasetReference",
-									"parameters": {
-										"contenedor": {
-											"value": "https://stjavier.blob.core.windows.net/ejercicio4",
-											"type": "Expression"
-										},
-										"directorio": {
-											"value": "https://stjavier.blob.core.windows.net/ejercicio4/Creacion.xlsb",
-											"type": "Expression"
-										},
-										"filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							]
 						},
@@ -170,21 +138,7 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "DataSourceFile",
-									"type": "DatasetReference",
-									"parameters": {
-										"contenedor": {
-											"value": "https://stjavier.blob.core.windows.net/ejercicio3",
-											"type": "Expression"
-										},
-										"directorio": {
-											"value": "https://stjavier.blob.core.windows.net/ejercicio3/Creacion.xlsb",
-											"type": "Expression"
-										},
-										"filename": {
-											"value": "@item().name",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								},
 								"enableLogging": false,
 								"storeSettings": {
