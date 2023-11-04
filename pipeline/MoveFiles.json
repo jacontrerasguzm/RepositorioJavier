@@ -121,7 +121,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"contenedor": {
-											"value": "@pipeline().parameters.DestinationStore_Location",
+											"value": "@pipeline().parameters.SourceStore_Location",
 											"type": "Expression"
 										},
 										"directorio": {
