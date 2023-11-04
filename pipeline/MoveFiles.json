@@ -43,7 +43,7 @@
 				}
 			},
 			{
-				"name": "Get Metadata1",
+				"name": "FilterFile",
 				"type": "Filter",
 				"dependsOn": [
 					{
@@ -70,7 +70,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "FilterFile",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -82,6 +82,7 @@
 						"value": "@activity('FilterFile').output.value",
 						"type": "Expression"
 					},
+					"batchCount": 20,
 					"activities": [
 						{
 							"name": "CopyFile",
@@ -177,7 +178,21 @@
 							"typeProperties": {
 								"dataset": {
 									"referenceName": "DataSourceFile",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"contenedor": {
+											"value": "@pipeline().parameters.SourceStore_Location",
+											"type": "Expression"
+										},
+										"directorio": {
+											"value": "@pipeline().parameters.SourceStore_Directory",
+											"type": "Expression"
+										},
+										"nombrearchivo": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
 								},
 								"enableLogging": false,
 								"storeSettings": {
@@ -194,14 +209,14 @@
 		"parameters": {
 			"SourceStore_Location": {
 				"type": "string",
-				"defaultValue": "ejercicio3"
+				"defaultValue": "ejercicio4"
 			},
 			"SourceStore_Directory": {
 				"type": "string"
 			},
 			"DestinationStore_Location": {
 				"type": "string",
-				"defaultValue": "ejercicio4"
+				"defaultValue": "ejercicio3"
 			},
 			"DestinationStore_Directory": {
 				"type": "string"
